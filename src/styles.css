@@ -6,6 +6,7 @@
 
 header {
   display: flex;
+  flex-direction: column;
   height: 100px;
   align-items: center;
   justify-content: center;
@@ -14,4 +15,15 @@ header {
 main {
   display: flex;
   justify-content: space-around;
+}
+
+.row {
+  display: flex;
+}
+
+.square {
+  height: 50px;
+  width: 50px;
+  border: 1px solid black;
+  background: rgb(130, 200, 200);
 }
