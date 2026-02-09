@@ -5,11 +5,11 @@ export class Gameboard {
     this.board = new Array(10).fill(null).map(() => new Array(10).fill(null)); // Our 10x10 gameboard
 
     this.ships = [
-      new Ship(5),
-      new Ship(4),
-      new Ship(3),
-      new Ship(3),
       new Ship(2),
+      new Ship(3),
+      new Ship(3),
+      new Ship(4),
+      new Ship(5),
     ];
 
     this.missedShots = new Array(100);
@@ -57,14 +57,18 @@ export class Gameboard {
   }
 
   placeShip(ship, rotate, startX, startY) {
-    if (!possiblePlace(ship, rotate, startX, startY))
-      throw new Error("Pick a suitable position");
+    if (!this.withinBoard(ship, rotate, startX, startY))
+      return "Positions selected are outside of the board";
+    else if (!this.emptyPositions(ship, rotate, startX, startY))
+      return "Positions selected not empty";
     if (!rotate) {
       for (let i = 0; i < ship.length; i++)
         this.board[startX][startY + i] = ship;
+      return "Successfully placed non-rotated ship";
     } else {
       for (let i = 0; i < ship.length; i++)
         this.board[startX + i][startY] = ship;
+      return "Succsessfully placed rotated ship";
     }
   }
 
