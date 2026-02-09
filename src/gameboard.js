@@ -31,7 +31,6 @@ export class Gameboard {
     return true;
   }
 
-  // [[0,1,2,3,4,5],[0,1,2,3,4,5],[0,1,2,3,4,5],[0,1,2,3,4,5],[0,1,2,3,4,5]]
   // Method to check if our ship is being added on empty squares
   emptyPositions(ship, rotate, startX, startY) {
     if (!rotate) {
@@ -46,7 +45,7 @@ export class Gameboard {
     return true;
   }
 
-  // Check if the place where to put the ship is empty and within the board
+  /*// Check if the place where to put the ship is empty and within the board
   possiblePlace(ship, rotate, startX, startY) {
     // Checking if it's empty
     if (!this.emptyPositions(ship, rotate, startX, startY)) return false;
@@ -54,7 +53,7 @@ export class Gameboard {
     else if (!this.emptyPositions(ship, rotate, startX, startY)) return false;
     // If all is good return true
     else return true;
-  }
+  }*/
 
   placeShip(ship, rotate, startX, startY) {
     if (!this.withinBoard(ship, rotate, startX, startY))
@@ -68,7 +67,7 @@ export class Gameboard {
     } else {
       for (let i = 0; i < ship.length; i++)
         this.board[startX + i][startY] = ship;
-      return "Succsessfully placed rotated ship";
+      return "Successfully placed rotated ship";
     }
   }
 
