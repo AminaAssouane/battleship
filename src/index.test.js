@@ -23,3 +23,7 @@ test("Ship intact with 0 hits", () => {
 test("Ship damaged with 1 hits", () => {
   expect(index.afterHit).toBe(1);
 });
+
+test("Missed attack tracked", () => {
+  expect(index.missedShot).toEqual({ x: 3, y: 7 });
+});

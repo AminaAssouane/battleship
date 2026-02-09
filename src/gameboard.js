@@ -12,7 +12,7 @@ export class Gameboard {
       new Ship(5),
     ];
 
-    this.missedShots = new Array(100);
+    this.missedShots = [];
   }
 
   // Method to check if our ship is inside the board
@@ -73,7 +73,7 @@ export class Gameboard {
 
   receiveAttack(x, y) {
     if (this.board[x][y]) this.board[x][y].hit();
-    else this.missedShots.push(x, y);
+    else this.missedShots.push({ x: x, y: y });
   }
 
   hasLost() {

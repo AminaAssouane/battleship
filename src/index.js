@@ -12,4 +12,8 @@ export let beforeHit = board.ships[4].hits;
 board.receiveAttack(4, 4);
 export let afterHit = board.ships[4].hits;
 
+board.receiveAttack(3, 7);
+export let missedShot = board.missedShots[0];
+
 console.log(board.board);
+console.log(board.missedShots);
