@@ -57,9 +57,14 @@ export class Gameboard {
   }
 
   placeShip(ship, rotate, startX, startY) {
-    if (ship.length === 2) {
-      this.board[startX][startY] = ship;
-    } else if (ship.length === 3) {
+    if (!possiblePlace(ship, rotate, startX, startY))
+      throw new Error("Pick a suitable position");
+    if (!rotate) {
+      for (let i = 0; i < ship.length; i++)
+        this.board[startX][startY + i] = ship;
+    } else {
+      for (let i = 0; i < ship.length; i++)
+        this.board[startX + i][startY] = ship;
     }
   }
 
