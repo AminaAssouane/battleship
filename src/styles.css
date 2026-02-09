@@ -4,12 +4,29 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: rgb(178, 217, 250);
+}
+
 header {
   display: flex;
   flex-direction: column;
+  gap: 10px;
   height: 100px;
   align-items: center;
   justify-content: center;
+}
+
+button {
+  height: 30px;
+  width: 80px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(91, 178, 249);
 }
 
 main {
@@ -25,5 +42,9 @@ main {
   height: 50px;
   width: 50px;
   border: 1px solid black;
-  background: rgb(130, 200, 200);
+  background-color: rgb(91, 178, 249);
+}
+
+.ship {
+  background-color: red;
 }

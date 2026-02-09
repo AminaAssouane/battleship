@@ -12,6 +12,7 @@ let player2 = null;
 
 startBtn.addEventListener("click", () => {
   [player1, player2] = logic.startGame();
+  logic.placeShips();
   makeBoard();
 });
 
@@ -24,6 +25,10 @@ function makeBoard() {
     for (let j = 0; j < 10; j++) {
       let square1 = document.createElement("div");
       let square2 = document.createElement("div");
+
+      // If the square contains a ship, we give it a new class
+      if (player1.gameboard.board[i][j]) square1.classList.add("ship");
+
       square1.classList.add("square");
       square2.classList.add("square");
       row1.appendChild(square1);
