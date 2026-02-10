@@ -13,5 +13,3 @@ export class Ship {
     else return false;
   }
 }
-
-// I HAVE TO ADD WHEN THE HIT IS TWICE OR MORE IN THE SAME SPOT, IT SHOULDNT IMCREMENT HIT

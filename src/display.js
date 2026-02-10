@@ -28,19 +28,30 @@ function makeBoard() {
       let square2 = document.createElement("div");
       //square2.id = `${i}${j}`;
 
-      // If the square contains a ship, we give it a new class
-      if (player1.gameboard.board[i][j].ship) square1.classList.add("ship");
-
       square1.classList.add("square");
       square2.classList.add("square", "clickable");
 
+      // If the square of the first player board contains a ship, we give it a new class
+      if (player1.gameboard.board[i][j].ship) square1.classList.add("ship");
+      // If the board of the second player is shot in a ship square
+      if (
+        player2.gameboard.board[i][j].shot &&
+        player2.gameboard.board[i][j].ship
+      )
+        square2.classList.add("shot");
+      // If the board of the second player gets a missed shot
+      if (
+        player2.gameboard.board[i][j].shot &&
+        !player2.gameboard.board[i][j].ship
+      )
+        square2.classList.add("missedShot");
+
       // Attack
-      square2.addEventListener("click", () =>
-        player2.gameboard.receiveAttack(i, j),
-      );
-      // We get the coordinates through the id of the square
-      //`${square2.id}`.slice(0, 1),
-      //`${square2.id}`.slice(1),
+      square2.addEventListener("click", () => {
+        player2.gameboard.receiveAttack(i, j);
+        rerenderBoards(board1, board2);
+        makeBoard();
+      });
 
       row1.appendChild(square1);
       row2.appendChild(square2);
@@ -48,4 +59,9 @@ function makeBoard() {
     board1.appendChild(row1);
     board2.appendChild(row2);
   }
+}
+
+function rerenderBoards(board1, board2) {
+  while (board1.firstChild) board1.removeChild(board1.firstChild);
+  while (board2.firstChild) board2.removeChild(board2.firstChild);
 }
