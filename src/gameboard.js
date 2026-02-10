@@ -88,25 +88,6 @@ export class Gameboard {
       this.board[x][y].shot = true;
     }
   }
-  /*
-  function sendAttack(square, i, j) {
-  if (
-    player2.gameboard.board[i][j].ship &&
-    !player2.gameboard.board[i][j].shot
-  ) {
-    player2.gameboard.board[i][j].shot = true;
-    player2.gameboard.board[i][j].ship.hit();
-    square.classList.remove("clickable");
-    square.classList.add("shot");
-  } else if (
-    !player2.gameboard.board[i][j].ship &&
-    !player2.gameboard.board[i][j].shot
-  ) {
-    player2.gameboard.board[i][j].shot = true;
-    square.classList.remove("clickable");
-    square.classList.add("missedShot");
-  }
-}*/
 
   hasLost() {
     for (let i = 0; i < 5; i++) {

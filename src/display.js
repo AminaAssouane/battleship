@@ -38,6 +38,7 @@ function makeBoard() {
       square2.addEventListener("click", () => {
         player2.gameboard.receiveAttack(i, j);
         updateBoard(player2, square2, i, j);
+        if (player2.gameboard.hasLost()) alert("Player 2 lost!");
       });
 
       row1.appendChild(square1);
@@ -55,9 +56,4 @@ function updateBoard(player, square, i, j) {
   // If the board of the second player gets a missed shot
   if (player.gameboard.board[i][j].shot && !player.gameboard.board[i][j].ship)
     square.classList.add("missedShot");
-}
-
-function rerenderBoards(board1, board2) {
-  while (board1.firstChild) board1.removeChild(board1.firstChild);
-  while (board2.firstChild) board2.removeChild(board2.firstChild);
 }
