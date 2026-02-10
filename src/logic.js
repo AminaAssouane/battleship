@@ -6,8 +6,8 @@ let player1;
 let player2;
 
 export function startGame() {
-  player1 = new Player("human");
-  player2 = new Player("computer");
+  player1 = new Player(false);
+  player2 = new Player(true);
   return [player1, player2];
 }
 
