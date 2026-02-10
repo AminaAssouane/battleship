@@ -11,6 +11,16 @@ export function startGame() {
   return [player1, player2];
 }
 
+let currentPlayer = player1;
+
+export function switchTurn() {
+  currentPlayer = currentPlayer === player1 ? player2 : player1;
+}
+
+export function getCurrentPlayer() {
+  return currentPlayer;
+}
+
 export function placeShips() {
   // ship 2
   player1.gameboard.placeShip(player1.gameboard.ships[0], false, 0, 0);

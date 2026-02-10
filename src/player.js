@@ -17,6 +17,6 @@ export class Player {
     } while (enemyBoard.board[x][y].shot);
 
     enemyBoard.receiveAttack(x, y);
-    return { x, y };
+    return [x, y];
   }
 }
