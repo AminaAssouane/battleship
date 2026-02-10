@@ -73,7 +73,7 @@ export class Gameboard {
 
   receiveAttack(x, y) {
     if (this.board[x][y]) this.board[x][y].hit();
-    else this.missedShots.push({ x: x, y: y });
+    else this.missedShots.push([x, y]);
   }
 
   hasLost() {

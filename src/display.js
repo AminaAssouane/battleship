@@ -24,13 +24,18 @@ function makeBoard() {
     row2.classList.add("row");
     for (let j = 0; j < 10; j++) {
       let square1 = document.createElement("div");
+      square1.id = `${i}${j}`;
       let square2 = document.createElement("div");
+      square2.id = `${i}${j}`;
 
       // If the square contains a ship, we give it a new class
       if (player1.gameboard.board[i][j]) square1.classList.add("ship");
 
       square1.classList.add("square");
-      square2.classList.add("square");
+      square2.classList.add("square", "clickable");
+
+      // Attack
+
       row1.appendChild(square1);
       row2.appendChild(square2);
     }
@@ -38,3 +43,12 @@ function makeBoard() {
     board2.appendChild(row2);
   }
 }
+
+/*
+function attack() {
+  const squares = document.querySelectorAll(".clickable");
+  squares.forEach((square) => addEventListener("click", () => {
+    if (square.classList.contains("ship2"))
+  }));
+}
+*/

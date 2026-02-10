@@ -25,4 +25,17 @@ export function placeShips() {
   player1.gameboard.placeShip(player1.gameboard.ships[3], false, 7, 2);
 
   player1.gameboard.placeShip(player1.gameboard.ships[4], false, 9, 4);
+
+  player2.gameboard.placeShip(player1.gameboard.ships[0], false, 0, 0);
+
+  // ship 3
+  player2.gameboard.placeShip(player1.gameboard.ships[1], true, 1, 3);
+
+  // ship 3
+  player2.gameboard.placeShip(player1.gameboard.ships[2], false, 2, 6);
+
+  // ship 4
+  player2.gameboard.placeShip(player1.gameboard.ships[3], false, 7, 2);
+
+  player2.gameboard.placeShip(player1.gameboard.ships[4], false, 9, 4);
 }

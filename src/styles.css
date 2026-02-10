@@ -48,3 +48,11 @@ main {
 .ship {
   background-color: red;
 }
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  opacity: 0.5;
+}
