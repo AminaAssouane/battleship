@@ -33,24 +33,11 @@ function makeBoard() {
 
       // If the square of the first player board contains a ship, we give it a new class
       if (player1.gameboard.board[i][j].ship) square1.classList.add("ship");
-      // If the board of the second player is shot in a ship square
-      if (
-        player2.gameboard.board[i][j].shot &&
-        player2.gameboard.board[i][j].ship
-      )
-        square2.classList.add("shot");
-      // If the board of the second player gets a missed shot
-      if (
-        player2.gameboard.board[i][j].shot &&
-        !player2.gameboard.board[i][j].ship
-      )
-        square2.classList.add("missedShot");
 
       // Attack
       square2.addEventListener("click", () => {
         player2.gameboard.receiveAttack(i, j);
-        rerenderBoards(board1, board2);
-        makeBoard();
+        updateBoard(player2, square2, i, j);
       });
 
       row1.appendChild(square1);
@@ -59,6 +46,15 @@ function makeBoard() {
     board1.appendChild(row1);
     board2.appendChild(row2);
   }
+}
+
+function updateBoard(player, square, i, j) {
+  // If the board of the second player is shot in a ship square
+  if (player.gameboard.board[i][j].shot && player.gameboard.board[i][j].ship)
+    square.classList.add("shot");
+  // If the board of the second player gets a missed shot
+  if (player.gameboard.board[i][j].shot && !player.gameboard.board[i][j].ship)
+    square.classList.add("missedShot");
 }
 
 function rerenderBoards(board1, board2) {
