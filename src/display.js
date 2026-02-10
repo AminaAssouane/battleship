@@ -39,7 +39,9 @@ function makeBoard() {
 
       // Attack
       square2.addEventListener("click", () => {
+        if (player2.gameboard.board[i][j].shot) return; // this to avoid re-attacking the same square
         player2.gameboard.receiveAttack(i, j);
+        square2.classList.remove("clickable");
         updateBoard(player2, square2, i, j);
         if (player2.gameboard.hasLost()) {
           alert("Player 2 lost!");
