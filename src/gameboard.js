@@ -4,6 +4,8 @@ export class Gameboard {
   constructor() {
     this.board = new Array(10).fill(null).map(() => new Array(10).fill(null)); // Our 10x10 gameboard
 
+    this.fillBoard();
+
     this.ships = [
       new Ship(2),
       new Ship(3),
@@ -13,6 +15,15 @@ export class Gameboard {
     ];
 
     this.missedShots = [];
+  }
+
+  // We fill the board with an object containing the properties ship and shot
+  fillBoard() {
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 10; j++) {
+        this.board[i][j] = { ship: null, shot: false };
+      }
+    }
   }
 
   // Method to check if our ship is inside the board
@@ -35,11 +46,11 @@ export class Gameboard {
   emptyPositions(ship, rotate, startX, startY) {
     if (!rotate) {
       for (let i = 0; i < ship.length; i++) {
-        if (this.board[startX][startY + i]) return false;
+        if (this.board[startX][startY + i].ship) return false;
       }
     } else {
       for (let i = 0; i < ship.length; i++) {
-        if (this.board[startX + i][startY]) return false;
+        if (this.board[startX + i][startY].ship) return false;
       }
     }
     return true;
@@ -62,17 +73,17 @@ export class Gameboard {
       return "Positions selected not empty";
     if (!rotate) {
       for (let i = 0; i < ship.length; i++)
-        this.board[startX][startY + i] = ship;
+        this.board[startX][startY + i].ship = ship;
       return "Successfully placed non-rotated ship";
     } else {
       for (let i = 0; i < ship.length; i++)
-        this.board[startX + i][startY] = ship;
+        this.board[startX + i][startY].ship = ship;
       return "Successfully placed rotated ship";
     }
   }
 
   receiveAttack(x, y) {
-    if (this.board[x][y]) this.board[x][y].hit();
+    if (this.board[x][y].ship) this.board[x][y].ship.hit();
     else this.missedShots.push([x, y]);
   }
 

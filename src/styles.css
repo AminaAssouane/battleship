@@ -46,7 +46,7 @@ main {
 }
 
 .ship {
-  background-color: red;
+  background-color: rgb(59, 56, 56);
 }
 
 .clickable {
@@ -55,4 +55,12 @@ main {
 
 .clickable:hover {
   opacity: 0.5;
+}
+
+.shot {
+  background-color: rgb(34, 173, 87);
+}
+
+.missedShot {
+  background-color: red;
 }

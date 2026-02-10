@@ -29,12 +29,20 @@ function makeBoard() {
       square2.id = `${i}${j}`;
 
       // If the square contains a ship, we give it a new class
-      if (player1.gameboard.board[i][j]) square1.classList.add("ship");
+      if (player1.gameboard.board[i][j].ship) square1.classList.add("ship");
 
       square1.classList.add("square");
       square2.classList.add("square", "clickable");
 
       // Attack
+      square2.addEventListener("click", () =>
+        // We get the coordinates through the id of the square
+        sendAttack(
+          square2,
+          `${square2.id}`.slice(0, 1),
+          `${square2.id}`.slice(1),
+        ),
+      );
 
       row1.appendChild(square1);
       row2.appendChild(square2);
@@ -44,11 +52,21 @@ function makeBoard() {
   }
 }
 
-/*
-function attack() {
-  const squares = document.querySelectorAll(".clickable");
-  squares.forEach((square) => addEventListener("click", () => {
-    if (square.classList.contains("ship2"))
-  }));
+function sendAttack(square, i, j) {
+  if (
+    player2.gameboard.board[i][j].ship &&
+    !player2.gameboard.board[i][j].shot
+  ) {
+    player2.gameboard.board[i][j].shot = true;
+    player2.gameboard.board[i][j].ship.hit;
+    square.classList.remove("clickable");
+    square.classList.add("shot");
+  } else if (
+    !player2.gameboard.board[i][j].ship &&
+    !player2.gameboard.board[i][j].shot
+  ) {
+    player2.gameboard.board[i][j].shot = true;
+    square.classList.remove("clickable");
+    square.classList.add("missedShot");
+  }
 }
-*/
