@@ -21,6 +21,7 @@ export function getCurrentPlayer() {
   return currentPlayer;
 }
 
+/*
 export function placeShips() {
   // ship 2
   player1.gameboard.placeShip(player1.gameboard.ships[0], false, 0, 0);
@@ -48,4 +49,4 @@ export function placeShips() {
   player2.gameboard.placeShip(player2.gameboard.ships[3], false, 7, 2);
 
   player2.gameboard.placeShip(player2.gameboard.ships[4], false, 9, 4);
-}
+}*/

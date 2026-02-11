@@ -13,6 +13,7 @@ let player1 = null;
 let player2 = null;
 
 startBtn.addEventListener("click", () => {
+  resetBoard();
   [player1, player2] = logic.startGame();
   player1.gameboard.randomPlaceShips();
   player2.gameboard.randomPlaceShips();
@@ -78,4 +79,9 @@ function updateBoard(player, square, i, j) {
   // If the board of the second player gets a missed shot
   if (player.gameboard.board[i][j].shot && !player.gameboard.board[i][j].ship)
     square.classList.add("missedShot");
+}
+
+function resetBoard() {
+  board1.textContent = "";
+  board2.textContent = "";
 }

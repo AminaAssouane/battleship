@@ -103,13 +103,14 @@ export class Gameboard {
   // A method to ramdomly place the ships
   randomPlaceShips() {
     this.ships.forEach((ship) => {
-      let x = Math.floor(Math.random() * 10);
-      let y = Math.floor(Math.random() * 10);
-      let rotated = Math.random() < 0.5;
-      while (!this.placeShip(ship, rotated, x, y)) {
-        x = Math.floor(Math.random() * 10);
-        y = Math.floor(Math.random() * 10);
-        rotated = Math.random() < 0.5;
+      let placed = false;
+
+      while (!placed) {
+        const x = Math.floor(Math.random() * 10);
+        const y = Math.floor(Math.random() * 10);
+        const rotated = Math.random() < 0.5;
+
+        placed = this.placeShip(ship, rotated, x, y);
       }
     });
   }
