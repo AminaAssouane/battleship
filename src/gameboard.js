@@ -66,17 +66,21 @@ export class Gameboard {
 
   placeShip(ship, rotate, startX, startY) {
     if (!this.withinBoard(ship, rotate, startX, startY))
-      return "Positions selected are outside of the board";
+      //return "Positions selected are outside of the board";
+      return false;
     else if (!this.emptyPositions(ship, rotate, startX, startY))
-      return "Positions selected not empty";
+      //return "Positions selected not empty";
+      return false;
     if (!rotate) {
       for (let i = 0; i < ship.length; i++)
         this.board[startX][startY + i].ship = ship;
-      return "Successfully placed non-rotated ship";
+      //return "Successfully placed non-rotated ship";
+      return true;
     } else {
       for (let i = 0; i < ship.length; i++)
         this.board[startX + i][startY].ship = ship;
-      return "Successfully placed rotated ship";
+      //return "Successfully placed rotated ship";
+      return true;
     }
   }
 
@@ -94,5 +98,19 @@ export class Gameboard {
       if (!this.ships[i].isSunk()) return false;
     }
     return true;
+  }
+
+  // A method to ramdomly place the ships
+  randomPlaceShips() {
+    this.ships.forEach((ship) => {
+      let x = Math.floor(Math.random() * 10);
+      let y = Math.floor(Math.random() * 10);
+      let rotated = Math.random() < 0.5;
+      while (!this.placeShip(ship, rotated, x, y)) {
+        x = Math.floor(Math.random() * 10);
+        y = Math.floor(Math.random() * 10);
+        rotated = Math.random() < 0.5;
+      }
+    });
   }
 }

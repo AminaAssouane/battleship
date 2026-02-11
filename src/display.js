@@ -14,7 +14,8 @@ let player2 = null;
 
 startBtn.addEventListener("click", () => {
   [player1, player2] = logic.startGame();
-  logic.placeShips();
+  player1.gameboard.randomPlaceShips();
+  player2.gameboard.randomPlaceShips();
   makeBoard();
 });
 
