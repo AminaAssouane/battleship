@@ -104,5 +104,9 @@ function makeShip(length) {
 }
 
 function makeShips() {
+  makeShip(2);
   makeShip(3);
+  makeShip(3);
+  makeShip(4);
+  makeShip(5);
 }
