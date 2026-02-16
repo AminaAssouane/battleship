@@ -91,6 +91,7 @@ function updateBoard(player, square, i, j) {
 function resetBoard() {
   board1.textContent = "";
   board2.textContent = "";
+  shipsContainer.textContent = "";
 }
 
 /* Trying to make the selection of ships happen */
