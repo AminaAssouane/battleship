@@ -6,6 +6,7 @@ import * as logic from "./logic";
 const startBtn = document.getElementById("startBtn");
 const board1 = document.getElementById("board1");
 const board2 = document.getElementById("board2");
+const shipsContainer = document.getElementById("ships-container");
 
 const player1Squares = [];
 
@@ -18,6 +19,7 @@ startBtn.addEventListener("click", () => {
   player1.gameboard.randomPlaceShips();
   player2.gameboard.randomPlaceShips();
   makeBoard();
+  makeShips();
 });
 
 function makeBoard() {
@@ -46,6 +48,7 @@ function makeBoard() {
         square2.classList.remove("clickable");
         updateBoard(player2, square2, i, j);
         if (player2.gameboard.hasLost()) {
+          resetBoard();
           alert("Player 2 lost!");
           return;
         }
@@ -58,6 +61,7 @@ function makeBoard() {
             move[1],
           );
           if (player1.gameboard.hasLost()) {
+            resetBoard();
             alert("Player 1 lost!");
             return;
           }
@@ -84,4 +88,21 @@ function updateBoard(player, square, i, j) {
 function resetBoard() {
   board1.textContent = "";
   board2.textContent = "";
+}
+
+/* Trying to make the selection of ships happen */
+function makeShip(length) {
+  const ship = document.createElement("div");
+  for (let i = 0; i < length; i++) {
+    const square = document.createElement("div");
+    square.classList.add("square");
+    square.classList.add("ship");
+    ship.appendChild(square);
+  }
+  ship.classList.add("row");
+  shipsContainer.appendChild(ship);
+}
+
+function makeShips() {
+  makeShip(3);
 }
