@@ -10,13 +10,16 @@ const shipsContainer = document.getElementById("ships-container");
 
 const player1Squares = [];
 
+let ships = [];
+let selectedShip = null;
+
 let player1 = null;
 let player2 = null;
 
 startBtn.addEventListener("click", () => {
   resetBoard();
   [player1, player2] = logic.startGame();
-  player1.gameboard.randomPlaceShips();
+  // player1.gameboard.randomPlaceShips();
   player2.gameboard.randomPlaceShips();
   makeBoard();
   makeShips();
@@ -99,14 +102,22 @@ function makeShip(length) {
     square.classList.add("ship");
     ship.appendChild(square);
   }
-  ship.classList.add("row");
+  ship.classList.add("row", "clickable");
+
+  ship.addEventListener("click", () => {
+    selectedShip = ship;
+    ships.forEach((item) => item.classList.remove("selected-ship"));
+    ship.classList.add("selected-ship");
+  });
+
   shipsContainer.appendChild(ship);
+  return ship;
 }
 
 function makeShips() {
-  makeShip(2);
-  makeShip(3);
-  makeShip(3);
-  makeShip(4);
-  makeShip(5);
+  ships.push(makeShip(2));
+  ships.push(makeShip(3));
+  ships.push(makeShip(3));
+  ships.push(makeShip(4));
+  ships.push(makeShip(5));
 }
