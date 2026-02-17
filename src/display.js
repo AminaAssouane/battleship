@@ -95,7 +95,9 @@ function resetBoard() {
 }
 
 /* Trying to make the selection of ships happen */
-function makeShip(length) {
+
+// We use the index to be able to map the ship divs to the ships in gameboard, so to link UI and logic
+function makeShip(length, index) {
   const ship = document.createElement("div");
   for (let i = 0; i < length; i++) {
     const square = document.createElement("div");
@@ -109,6 +111,8 @@ function makeShip(length) {
     selectedShip = ship;
     ships.forEach((item) => item.classList.remove("selected-ship"));
     ship.classList.add("selected-ship");
+    selectedShip.id = index;
+    console.log(`the index is : ${selectedShip.id}`);
   });
 
   shipsContainer.appendChild(ship);
@@ -116,9 +120,20 @@ function makeShip(length) {
 }
 
 function makeShips() {
-  ships.push(makeShip(2));
-  ships.push(makeShip(3));
-  ships.push(makeShip(3));
-  ships.push(makeShip(4));
-  ships.push(makeShip(5));
+  ships.push(makeShip(2, 0));
+  ships.push(makeShip(3, 1));
+  ships.push(makeShip(3, 2));
+  ships.push(makeShip(4, 3));
+  ships.push(makeShip(5, 4));
+}
+
+function placeShips() {
+  for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++) {
+      player1Squares[i][j].addEventListener("click", () => {
+        let ship = player1.gameboard.ships[selectedShip.id];
+        player1.gameboard.placeShip(ship, false, i, j);
+      });
+    }
+  }
 }
