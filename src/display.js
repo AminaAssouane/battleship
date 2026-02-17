@@ -11,7 +11,9 @@ const shipsContainer = document.getElementById("ships-container");
 const player1Squares = [];
 
 let ships = [];
+
 let selectedShip = null;
+let selectedShipIndex = null;
 
 let player1 = null;
 let player2 = null;
@@ -113,7 +115,7 @@ function makeShip(length, index) {
     selectedShip = ship;
     ships.forEach((item) => item.classList.remove("selected-ship"));
     ship.classList.add("selected-ship");
-    selectedShip.id = index;
+    selectedShipIndex = index;
   });
 
   shipsContainer.appendChild(ship);
@@ -133,14 +135,16 @@ function placeShips() {
     for (let j = 0; j < 10; j++) {
       player1Squares[i][j].classList.add("clickable");
       player1Squares[i][j].addEventListener("click", () => {
-        let ship = player1.gameboard.ships[selectedShip.id];
+        if (!selectedShip) return;
+
+        let ship = player1.gameboard.ships[selectedShipIndex];
         if (player1.gameboard.placeShip(ship, false, i, j)) {
-          console.log(selectedShip.id);
-          shipsContainer.removeChild(selectedShip);
           // We add class ship to the square to paint it
           for (let x = 0; x < selectedShip.children.length; x++) {
             player1Squares[i][j + x].classList.add("ship");
           }
+          shipsContainer.removeChild(selectedShip);
+          selectedShip = null;
         }
       });
     }
