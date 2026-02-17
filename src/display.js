@@ -18,6 +18,8 @@ let selectedShipIndex = null;
 let player1 = null;
 let player2 = null;
 
+let rotated = false;
+
 startBtn.addEventListener("click", () => {
   resetBoard();
   [player1, player2] = logic.startGame();
@@ -138,11 +140,16 @@ function placeShips() {
         if (!selectedShip) return;
 
         let ship = player1.gameboard.ships[selectedShipIndex];
-        if (player1.gameboard.placeShip(ship, false, i, j)) {
+        if (player1.gameboard.placeShip(ship, rotated, i, j)) {
           // We add class ship to the square to paint it
-          for (let x = 0; x < selectedShip.children.length; x++) {
-            player1Squares[i][j + x].classList.add("ship");
-          }
+          if (!rotated)
+            for (let x = 0; x < selectedShip.children.length; x++) {
+              player1Squares[i][j + x].classList.add("ship");
+            }
+          else
+            for (let x = 0; x < selectedShip.children.length; x++) {
+              player1Squares[i + x][j].classList.add("ship");
+            }
           shipsContainer.removeChild(selectedShip);
           selectedShip = null;
         }
@@ -150,3 +157,7 @@ function placeShips() {
     }
   }
 }
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "r") rotated = !rotated;
+});
