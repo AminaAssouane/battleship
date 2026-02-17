@@ -137,6 +137,10 @@ function placeShips() {
         if (player1.gameboard.placeShip(ship, false, i, j)) {
           console.log(selectedShip.id);
           shipsContainer.removeChild(selectedShip);
+          // We add class ship to the square to paint it
+          for (let x = 0; x < selectedShip.children.length; x++) {
+            player1Squares[i][j + x].classList.add("ship");
+          }
         }
       });
     }
