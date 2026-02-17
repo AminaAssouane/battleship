@@ -4,8 +4,14 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "Battleship";
+  src: url("./assets/fonts/freeshipping.ttf");
+}
+
 body {
   background-color: rgb(178, 217, 250);
+  font-family: "Battleship";
 }
 
 header {
@@ -31,9 +37,45 @@ button:hover {
 
 main {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+/* Ships area */
+
+#setup-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+#ships-container {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
   justify-content: center;
+}
+
+#ships-container .row {
+  display: inline-flex;
+}
+
+/* Boards */
+#boards {
+  display: flex;
   gap: 80px;
 }
+
+.board-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Other styles */
 
 .row {
   display: flex;
@@ -66,33 +108,10 @@ main {
   background-color: red;
 }
 
-.ships-placeholder {
-  height: 150px;
-}
-
-.player-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 /* Display of ships before placement */
 
-#ships-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 50px;
-  min-height: 150px;
-  justify-content: center;
-}
-
 .selected-ship {
-  box-shadow:
-    rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px,
-    rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px,
-    rgba(0, 0, 0, 0.09) 0px -3px 5px;
-
-  border: 2px solid black;
+  outline: 3px solid rgb(3, 138, 248);
+  outline-offset: 4px;
+  transform: translateY(-2px);
 }
