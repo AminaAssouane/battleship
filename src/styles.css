@@ -10,8 +10,32 @@
 }
 
 body {
-  background-color: rgb(178, 217, 250);
+  /*background-color: rgb(178, 217, 250);*/
+  background: radial-gradient(circle at top, #0b3d91, #041f3d);
+  color: rgb(91, 178, 249);
   font-family: "Battleship";
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+h1 {
+  font-size: 50px;
+  letter-spacing: 6px;
+  text-shadow:
+    2px 2px 0px black,
+    0 0 16px rgba(0, 229, 255, 0.7);
+}
+
+h2 {
+  font-size: 30px;
+  text-shadow: 2px 2px 0px black;
+}
+
+h3 {
+  font-size: 30px;
+  text-shadow: 2px 2px 0px black;
 }
 
 header {
