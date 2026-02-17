@@ -71,9 +71,11 @@ button {
   border-radius: 10px;
   border: none;
   cursor: pointer;
+  color: rgb(91, 178, 249);
 }
 
 button:hover {
+  color: white;
   background-color: rgb(91, 178, 249);
 }
 

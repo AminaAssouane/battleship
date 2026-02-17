@@ -20,10 +20,15 @@ let player2 = null;
 
 let rotated = false;
 
-startBtn.addEventListener("click", () => {
+[player1, player2] = logic.startGame();
+player2.gameboard.randomPlaceShips();
+makeBoard();
+makeShips();
+placeShips();
+
+resetBtn.addEventListener("click", () => {
   resetBoard();
   [player1, player2] = logic.startGame();
-  // player1.gameboard.randomPlaceShips();
   player2.gameboard.randomPlaceShips();
   makeBoard();
   makeShips();
