@@ -23,6 +23,7 @@ startBtn.addEventListener("click", () => {
   player2.gameboard.randomPlaceShips();
   makeBoard();
   makeShips();
+  placeShips();
 });
 
 function makeBoard() {
@@ -105,6 +106,7 @@ function makeShip(length, index) {
     square.classList.add("ship");
     ship.appendChild(square);
   }
+
   ship.classList.add("row", "clickable");
 
   ship.addEventListener("click", () => {
@@ -112,7 +114,6 @@ function makeShip(length, index) {
     ships.forEach((item) => item.classList.remove("selected-ship"));
     ship.classList.add("selected-ship");
     selectedShip.id = index;
-    console.log(`the index is : ${selectedShip.id}`);
   });
 
   shipsContainer.appendChild(ship);
@@ -130,9 +131,13 @@ function makeShips() {
 function placeShips() {
   for (let i = 0; i < 10; i++) {
     for (let j = 0; j < 10; j++) {
+      player1Squares[i][j].classList.add("clickable");
       player1Squares[i][j].addEventListener("click", () => {
         let ship = player1.gameboard.ships[selectedShip.id];
-        player1.gameboard.placeShip(ship, false, i, j);
+        if (player1.gameboard.placeShip(ship, false, i, j)) {
+          console.log(selectedShip.id);
+          shipsContainer.removeChild(selectedShip);
+        }
       });
     }
   }
